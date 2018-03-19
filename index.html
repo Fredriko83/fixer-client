@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Ratefinder</title>
+    <meta name="description" content="">
+    <!-- <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon"> -->
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII="
+        rel="icon" type="image/x-icon" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="dist/style.css">
+</head>
+
+<body>
+    <header>
+        <a href="#" style="float:right;">Manage Fixer.io API token</a>
+
+    </header>
+
+    <main>
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">Open Modal</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <p style="display:inline-block;">A fixer.io API token is needed to use this application, get it at
+                    <a href="https://fixer.io">www.fixer.io</a>
+                </p>
+                <form style="display:inline-block;">
+                    <input type="text" name="token" id="token">
+                    <p style="display:inline-block;">
+                        Save token:
+                    </p>
+                    <input id="checkBox" type="checkbox">
+                </form>
+                <div style="float:right;">
+                    <button class="token-ok btn">
+                        OK
+                    </button>
+                    <button class="token-close btn">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+        <form>
+            Enter date:
+            <input type="date" name="date" id="date">
+        </form>
+        <div id="table-content"></div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+
+    <!-- Template -->
+    <div id="table-template" style="display:none">
+        <table>
+            <caption>Rates</caption>
+            <tr>
+                <th>Currency</th>
+                <th>Rate</th>
+            </tr>
+            <tr class="row">
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="http://localhost:35729/livereload.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+        crossorigin="anonymous"></script>
+    <script src="dist/app.js"></script>
+
+</body>
+</html>
