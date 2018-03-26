@@ -1,3 +1,10 @@
 @import 'modules/modern-normalize';
 @import 'modules/vars';
 @import 'modules/small';
+@media only screen and (min-width: 600px) {
+    @import 'modules/medium';    
+}
+@media only screen and (min-width: 1200px) {
+    @import 'modules/large';    
+}
+

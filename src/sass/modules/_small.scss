@@ -1,9 +1,30 @@
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    margin-top: 2rem;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+main{
+    padding:2%;
+}
+
 header{
-    background-color:rgba(255, 0, 0, 0.39);
+    background-color:$primary-color;
     height:10rem;
 }
 
-
+// borroed from https://www.w3schools.com/howto/howto_css_modals.asp
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -40,4 +61,10 @@ header{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }

@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Welcome to Ratefinder</title>
     <meta name="description" content="">
-    <!-- <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon"> -->
     <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII="
         rel="icon" type="image/x-icon" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="dist/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+        crossorigin="anonymous"></script>
+    <script>
+        document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+            ':35729/livereload.js?snipver=1"></' + 'script>')
+    </script>
 </head>
 
 <body>
     <header>
-        <a href="#" style="float:right;">Manage Fixer.io API token</a>
-
     </header>
 
     <main>
         <!-- Trigger/Open The Modal -->
-        <button id="myBtn">Open Modal</button>
+        <button id="myBtn" style="float:right;">Token</button>
 
         <!-- The Modal -->
         <div id="myModal" class="modal">
 
             <!-- Modal content -->
-            <div class="modal-content">
+            <div class="modal-content clearfix">
                 <p style="display:inline-block;">A fixer.io API token is needed to use this application, get it at
                     <a href="https://fixer.io">www.fixer.io</a>
                 </p>
                 <form style="display:inline-block;">
                     <input type="text" name="token" id="token">
-                    <p style="display:inline-block;">
-                        Save token:
-                    </p>
-                    <input id="checkBox" type="checkbox">
                 </form>
                 <div style="float:right;">
                     <button class="token-ok btn">
@@ -62,14 +62,12 @@
     <!-- Template -->
     <div id="table-template" style="display:none">
         <table>
-            <caption>Rates</caption>
             <tr>
-                <th>Currency</th>
-                <th>Rate</th>
+                <th>Currency<a href="#" class="sort-up"><i class="fas fa-chevron-up"></i></a><a href="#" class="sort-down"><i class="fas fa-chevron-down"></i></a>
+                </th><th>Rate<a href="#" class="sort-up-rate"><i class="fas fa-chevron-up"></i></a><a href="#" class="sort-down-rate"><i class="fas fa-chevron-down"></i></a>
+                </th>
             </tr>
             <tr class="row">
-                <td></td>
-                <td></td>
             </tr>
         </table>
     </div>
@@ -80,4 +78,5 @@
     <script src="dist/app.js"></script>
 
 </body>
+
 </html>

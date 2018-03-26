@@ -1,0 +1,11 @@
+#table-content{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    div{
+        flex-basis:48%;
+        table {
+            width:100%;
+        }
+    }
+}

@@ -6,43 +6,73 @@ function setDateToToday() {
   $("#date").val(today);
 }
 
-function updateTableWithFixerData(endpoint, access_key, tableContent, tableTemplate) {
-  console.log(endpoint +" "+ access_key+" "+tableContent+" "+tableTemplate)
+function updateTableWithFixerData(
+  endpoint,
+  access_key,
+  tableContent,
+  tableTemplate,
+  rows
+) {
   $.ajax({
     url: "http://data.fixer.io/api/" + endpoint + "?access_key=" + access_key,
     dataType: "jsonp",
     success: function(json) {
-      console.log(json)
-      tableContent.appendChild(generateTable(json, tableTemplate));
+      var tables = [];
+      tables = generateTables(json, tableTemplate, rows);
+      tableContent.innerHTML = "";
+      for (let i = 0; i < rows; i++) {
+        tableContent.appendChild(tables[i]);
+      }
     }
   });
 }
 
-function generateTable(data, tableTemplate) {
-  var tableClone = tableTemplate.cloneNode(true); 
+function generateTables(data, tableTemplate, rows) {
+  var arr = [];
   for (var key in data.rates) {
     if (data.rates.hasOwnProperty(key)) {
-      var val = data.rates[key];
-      console.log(val);
-      var tr = document.createElement("tr");
-      var tdCurrency = document.createElement("td");
-      var textCurrency = document.createTextNode(key);
-      var tdRate = document.createElement("td");
-      var textRate = document.createTextNode(val);
-      tdCurrency.appendChild(textCurrency);
-      tdRate.appendChild(textRate);
-      tr.appendChild(tdCurrency);
-      tr.appendChild(tdRate);
-      tableClone.getElementsByTagName('table')[0].appendChild(tr);
+      var obj = {};
+      obj.currency = key;
+      obj.value = data.rates[key];
+      arr.push(obj);
     }
   }
-  tableClone.style.display = "block";  
-  return(tableClone);
+  var columns = [];
+  const num = arr.length / rows;
+  for (var i = 0; i < rows; i++) {
+    columns[i] = gTable(arr.splice(0, num), tableTemplate);
+  }
+  return columns;
 }
 
+function gTable(data, tableTemplate) {
+  var tableClone = tableTemplate.cloneNode(true);
+  for (let index = 0; index < data.length; index++) {
+    var tr = document.createElement("tr");
+    var tdCurrency = document.createElement("td");
+    var textCurrency = document.createTextNode(data[index].currency);
+    var tdRate = document.createElement("td");
+    var textRate = document.createTextNode(data[index].value);
+    tdCurrency.appendChild(textCurrency);
+    tdRate.appendChild(textRate);
+    tr.appendChild(tdCurrency);
+    tr.appendChild(tdRate);
+    tableClone.getElementsByTagName("table")[0].appendChild(tr);
+  }
+  tableClone.style.display = "block";
+  return tableClone;
+}
 
 function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  var table,
+    rows,
+    switching,
+    i,
+    x,
+    y,
+    shouldSwitch,
+    dir,
+    switchcount = 0;
   table = document.getElementById("myTable2");
   switching = true;
   // Set the sorting direction to ascending:
@@ -55,7 +85,7 @@ function sortTable(n) {
     rows = table.getElementsByTagName("TR");
     /* Loop through all table rows (except the
     first, which contains table headers): */
-    for (i = 1; i < (rows.length - 1); i++) {
+    for (i = 1; i < rows.length - 1; i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
@@ -67,13 +97,13 @@ function sortTable(n) {
       if (dir == "asc") {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           // If so, mark as a switch and break the loop:
-          shouldSwitch= true;
+          shouldSwitch = true;
           break;
         }
       } else if (dir == "desc") {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           // If so, mark as a switch and break the loop:
-          shouldSwitch= true;
+          shouldSwitch = true;
           break;
         }
       }
@@ -84,7 +114,7 @@ function sortTable(n) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       // Each time a switch is done, increase this count by 1:
-      switchcount ++;
+      switchcount++;
     } else {
       /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
@@ -98,6 +128,5 @@ function sortTable(n) {
 
 module.exports = {
   updateTableWithFixerData,
-  setDateToToday,
-  generateTable
+  setDateToToday
 };
